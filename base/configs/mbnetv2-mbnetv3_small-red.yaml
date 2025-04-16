@@ -1,0 +1,15 @@
+# mobilenetv2-1-1222121 -> mobilenetv3_small-4-22111111111
+net.features.0.0:
+  t_layers: [null, tid_0=net.features.4.conv.3]
+  modules: [null, RED]
+  kwargs: [null, { cs: 16, alpha: 50.0 }]
+
+net.features.1.conv.0:
+  t_layers: [tid_0=net.features.7.conv.3, tid_0=net.features.7.conv.3]
+  modules: [RED, RED]
+  kwargs: [{ cs: 16, alpha: 50.0 }, { cs: 16, alpha: 50.0 }]
+
+net.features.2.conv.3:
+  t_layers: [tid_0=net.features.14.conv.3, tid_0=net.features.14.conv.3]
+  modules: [RED, RED]
+  kwargs: [{ cs: 72, alpha: 50.0 }, { cs: 72, alpha: 50.0 }]
