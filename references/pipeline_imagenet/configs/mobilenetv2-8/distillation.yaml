@@ -1,0 +1,8 @@
+MODEL:
+  NAME: "S=mobilenetv2-8-1221111, T=[mobilenet_v2], D=[red, kd]"
+  TEACHERS: [mobilenet_v2]
+  STUDENT: mobilenetv2-8-1221111
+REED:
+  DIST_CONFIG: "../configs/mobilenetv2-8/reed_config.yaml"
+TRAIN:
+  VALIDATE_TEACHERS_PRETRAIN: false

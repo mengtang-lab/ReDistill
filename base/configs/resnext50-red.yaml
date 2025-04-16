@@ -1,0 +1,15 @@
+# resnext50-1-21222 -> resnext50-4-11221
+net.conv1:
+  t_layers: [null, tid_0=net.layer2.0]
+  modules: [null, RED]
+  kwargs: [null, { cs: 64, alpha: 50.0 }]
+
+net.layer2.0:
+  t_layers: [tid_0=net.layer3.0, tid_0=net.layer3.0]
+  modules: [RED, RED]
+  kwargs: [{ cs: 256, alpha: 50.0 }, { cs: 512, alpha: 50.0 }]
+
+net.layer3.0:
+  t_layers: [tid_0=net.layer4.0, tid_0=net.layer4.0]
+  modules: [RED, RED]
+  kwargs: [{ cs: 512, alpha: 50.0 }, { cs: 1024, alpha: 50.0 }]

@@ -1,0 +1,1031 @@
+
+ Run on time: 2024-03-23 21:22:57.908761
+
+ Architecture: mobilenetv3_small-4-22111111111
+
+ Arguments:
+	 root                 : ./
+	 seed                 : 0
+	 devices              : 0
+	 dataset              : STL10
+	 im_size              : 128
+	 batch_size           : 8
+	 architecture         : mobilenetv3_small-4-22111111111
+	 teacher              : mobilenetv3_small-1-22121111211
+	 teacher_pretrained   : ./ckpt/mobilenetv3_small-1-22121111211_stl10_imsize128_batchsize8_lr0.01_optimizerSGD.pth
+	 dist_config          : ./configs/mobilenetv3_small-red.yaml
+	 dist_pretrained      : 
+	 epochs               : 300
+	 learning_rate        : 0.01
+	 lr_interval          : 0.6 0.8 0.9
+	 lr_reduce            : 5
+	 optimizer            : SGD
+	 log                  : True
+	 test_only            : False
+	 dont_save            : False
+ Missing keys : [], Unexpected Keys: []
+ Info: Accuracy of loaded ANN model: 0.837375
+
+ Model: DataParallel(
+  (module): ReED(
+    (student): Network(
+      (net): MobileNetV3(
+        (features): Sequential(
+          (0): Sequential(
+            (0): Conv2d(3, 16, kernel_size=(3, 3), stride=(4, 4), padding=(1, 1), bias=False)
+            (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (2): h_swish(
+              (sigmoid): h_sigmoid(
+                (relu): ReLU6(inplace=True)
+              )
+            )
+          )
+          (1): InvertedResidual(
+            (conv): Sequential(
+              (0): Conv2d(16, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), groups=16, bias=False)
+              (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+              (2): ReLU(inplace=True)
+              (3): SELayer(
+                (avg_pool): AdaptiveAvgPool2d(output_size=1)
+                (fc): Sequential(
+                  (0): Linear(in_features=16, out_features=8, bias=True)
+                  (1): ReLU(inplace=True)
+                  (2): Linear(in_features=8, out_features=16, bias=True)
+                  (3): h_sigmoid(
+                    (relu): ReLU6(inplace=True)
+                  )
+                )
+              )
+              (4): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            )
+          )
+          (2): InvertedResidual(
+            (conv): Sequential(
+              (0): Conv2d(16, 72, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(72, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+              (2): ReLU(inplace=True)
+              (3): Conv2d(72, 72, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), groups=72, bias=False)
+              (4): BatchNorm2d(72, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+              (5): Identity()
+              (6): ReLU(inplace=True)
+              (7): Conv2d(72, 24, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (8): BatchNorm2d(24, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            )
+          )
+          (3): InvertedResidual(
+            (conv): Sequential(
+              (0): Conv2d(24, 88, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(88, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+              (2): ReLU(inplace=True)
+              (3): Conv2d(88, 88, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=88, bias=False)
+              (4): BatchNorm2d(88, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+              (5): Identity()
+              (6): ReLU(inplace=True)
+              (7): Conv2d(88, 24, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (8): BatchNorm2d(24, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            )
+          )
+          (4): InvertedResidual(
+            (conv): Sequential(
+              (0): Conv2d(24, 96, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+              (2): h_swish(
+                (sigmoid): h_sigmoid(
+                  (relu): ReLU6(inplace=True)
+                )
+              )
+              (3): Conv2d(96, 96, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2), groups=96, bias=False)
+              (4): BatchNorm2d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+              (5): SELayer(
+                (avg_pool): AdaptiveAvgPool2d(output_size=1)
+                (fc): Sequential(
+                  (0): Linear(in_features=96, out_features=24, bias=True)
+                  (1): ReLU(inplace=True)
+                  (2): Linear(in_features=24, out_features=96, bias=True)
+                  (3): h_sigmoid(
+                    (relu): ReLU6(inplace=True)
+                  )
+                )
+              )
+              (6): h_swish(
+                (sigmoid): h_sigmoid(
+                  (relu): ReLU6(inplace=True)
+                )
+              )
+              (7): Conv2d(96, 40, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (8): BatchNorm2d(40, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            )
+          )
+          (5): InvertedResidual(
+            (conv): Sequential(
+              (0): Conv2d(40, 240, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(240, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+              (2): h_swish(
+                (sigmoid): h_sigmoid(
+                  (relu): ReLU6(inplace=True)
+                )
+              )
+              (3): Conv2d(240, 240, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2), groups=240, bias=False)
+              (4): BatchNorm2d(240, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+              (5): SELayer(
+                (avg_pool): AdaptiveAvgPool2d(output_size=1)
+                (fc): Sequential(
+                  (0): Linear(in_features=240, out_features=64, bias=True)
+                  (1): ReLU(inplace=True)
+                  (2): Linear(in_features=64, out_features=240, bias=True)
+                  (3): h_sigmoid(
+                    (relu): ReLU6(inplace=True)
+                  )
+                )
+              )
+              (6): h_swish(
+                (sigmoid): h_sigmoid(
+                  (relu): ReLU6(inplace=True)
+                )
+              )
+              (7): Conv2d(240, 40, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (8): BatchNorm2d(40, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            )
+          )
+          (6): InvertedResidual(
+            (conv): Sequential(
+              (0): Conv2d(40, 240, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(240, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+              (2): h_swish(
+                (sigmoid): h_sigmoid(
+                  (relu): ReLU6(inplace=True)
+                )
+              )
+              (3): Conv2d(240, 240, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2), groups=240, bias=False)
+              (4): BatchNorm2d(240, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+              (5): SELayer(
+                (avg_pool): AdaptiveAvgPool2d(output_size=1)
+                (fc): Sequential(
+                  (0): Linear(in_features=240, out_features=64, bias=True)
+                  (1): ReLU(inplace=True)
+                  (2): Linear(in_features=64, out_features=240, bias=True)
+                  (3): h_sigmoid(
+                    (relu): ReLU6(inplace=True)
+                  )
+                )
+              )
+              (6): h_swish(
+                (sigmoid): h_sigmoid(
+                  (relu): ReLU6(inplace=True)
+                )
+              )
+              (7): Conv2d(240, 40, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (8): BatchNorm2d(40, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            )
+          )
+          (7): InvertedResidual(
+            (conv): Sequential(
+              (0): Conv2d(40, 120, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(120, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+              (2): h_swish(
+                (sigmoid): h_sigmoid(
+                  (relu): ReLU6(inplace=True)
+                )
+              )
+              (3): Conv2d(120, 120, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2), groups=120, bias=False)
+              (4): BatchNorm2d(120, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+              (5): SELayer(
+                (avg_pool): AdaptiveAvgPool2d(output_size=1)
+                (fc): Sequential(
+                  (0): Linear(in_features=120, out_features=32, bias=True)
+                  (1): ReLU(inplace=True)
+                  (2): Linear(in_features=32, out_features=120, bias=True)
+                  (3): h_sigmoid(
+                    (relu): ReLU6(inplace=True)
+                  )
+                )
+              )
+              (6): h_swish(
+                (sigmoid): h_sigmoid(
+                  (relu): ReLU6(inplace=True)
+                )
+              )
+              (7): Conv2d(120, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (8): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            )
+          )
+          (8): InvertedResidual(
+            (conv): Sequential(
+              (0): Conv2d(48, 144, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(144, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+              (2): h_swish(
+                (sigmoid): h_sigmoid(
+                  (relu): ReLU6(inplace=True)
+                )
+              )
+              (3): Conv2d(144, 144, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2), groups=144, bias=False)
+              (4): BatchNorm2d(144, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+              (5): SELayer(
+                (avg_pool): AdaptiveAvgPool2d(output_size=1)
+                (fc): Sequential(
+                  (0): Linear(in_features=144, out_features=40, bias=True)
+                  (1): ReLU(inplace=True)
+                  (2): Linear(in_features=40, out_features=144, bias=True)
+                  (3): h_sigmoid(
+                    (relu): ReLU6(inplace=True)
+                  )
+                )
+              )
+              (6): h_swish(
+                (sigmoid): h_sigmoid(
+                  (relu): ReLU6(inplace=True)
+                )
+              )
+              (7): Conv2d(144, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (8): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            )
+          )
+          (9): InvertedResidual(
+            (conv): Sequential(
+              (0): Conv2d(48, 288, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(288, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+              (2): h_swish(
+                (sigmoid): h_sigmoid(
+                  (relu): ReLU6(inplace=True)
+                )
+              )
+              (3): Conv2d(288, 288, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2), groups=288, bias=False)
+              (4): BatchNorm2d(288, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+              (5): SELayer(
+                (avg_pool): AdaptiveAvgPool2d(output_size=1)
+                (fc): Sequential(
+                  (0): Linear(in_features=288, out_features=72, bias=True)
+                  (1): ReLU(inplace=True)
+                  (2): Linear(in_features=72, out_features=288, bias=True)
+                  (3): h_sigmoid(
+                    (relu): ReLU6(inplace=True)
+                  )
+                )
+              )
+              (6): h_swish(
+                (sigmoid): h_sigmoid(
+                  (relu): ReLU6(inplace=True)
+                )
+              )
+              (7): Conv2d(288, 96, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (8): BatchNorm2d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            )
+          )
+          (10): InvertedResidual(
+            (conv): Sequential(
+              (0): Conv2d(96, 576, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(576, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+              (2): h_swish(
+                (sigmoid): h_sigmoid(
+                  (relu): ReLU6(inplace=True)
+                )
+              )
+              (3): Conv2d(576, 576, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2), groups=576, bias=False)
+              (4): BatchNorm2d(576, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+              (5): SELayer(
+                (avg_pool): AdaptiveAvgPool2d(output_size=1)
+                (fc): Sequential(
+                  (0): Linear(in_features=576, out_features=144, bias=True)
+                  (1): ReLU(inplace=True)
+                  (2): Linear(in_features=144, out_features=576, bias=True)
+                  (3): h_sigmoid(
+                    (relu): ReLU6(inplace=True)
+                  )
+                )
+              )
+              (6): h_swish(
+                (sigmoid): h_sigmoid(
+                  (relu): ReLU6(inplace=True)
+                )
+              )
+              (7): Conv2d(576, 96, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (8): BatchNorm2d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            )
+          )
+          (11): InvertedResidual(
+            (conv): Sequential(
+              (0): Conv2d(96, 576, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(576, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+              (2): h_swish(
+                (sigmoid): h_sigmoid(
+                  (relu): ReLU6(inplace=True)
+                )
+              )
+              (3): Conv2d(576, 576, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2), groups=576, bias=False)
+              (4): BatchNorm2d(576, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+              (5): SELayer(
+                (avg_pool): AdaptiveAvgPool2d(output_size=1)
+                (fc): Sequential(
+                  (0): Linear(in_features=576, out_features=144, bias=True)
+                  (1): ReLU(inplace=True)
+                  (2): Linear(in_features=144, out_features=576, bias=True)
+                  (3): h_sigmoid(
+                    (relu): ReLU6(inplace=True)
+                  )
+                )
+              )
+              (6): h_swish(
+                (sigmoid): h_sigmoid(
+                  (relu): ReLU6(inplace=True)
+                )
+              )
+              (7): Conv2d(576, 96, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (8): BatchNorm2d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            )
+          )
+        )
+        (conv): Sequential(
+          (0): Conv2d(96, 576, kernel_size=(1, 1), stride=(1, 1), bias=False)
+          (1): BatchNorm2d(576, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (2): h_swish(
+            (sigmoid): h_sigmoid(
+              (relu): ReLU6(inplace=True)
+            )
+          )
+        )
+        (avgpool): AdaptiveAvgPool2d(output_size=(1, 1))
+        (classifier): Sequential(
+          (0): Linear(in_features=576, out_features=1024, bias=True)
+          (1): h_swish(
+            (sigmoid): h_sigmoid(
+              (relu): ReLU6(inplace=True)
+            )
+          )
+          (2): Dropout(p=0.2, inplace=False)
+          (3): Linear(in_features=1024, out_features=10, bias=True)
+        )
+      )
+    )
+    (teachers): ModuleList(
+      (0): Network(
+        (net): MobileNetV3(
+          (features): Sequential(
+            (0): Sequential(
+              (0): Conv2d(3, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+              (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+              (2): h_swish(
+                (sigmoid): h_sigmoid(
+                  (relu): ReLU6(inplace=True)
+                )
+              )
+            )
+            (1): InvertedResidual(
+              (conv): Sequential(
+                (0): Conv2d(16, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), groups=16, bias=False)
+                (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+                (2): ReLU(inplace=True)
+                (3): SELayer(
+                  (avg_pool): AdaptiveAvgPool2d(output_size=1)
+                  (fc): Sequential(
+                    (0): Linear(in_features=16, out_features=8, bias=True)
+                    (1): ReLU(inplace=True)
+                    (2): Linear(in_features=8, out_features=16, bias=True)
+                    (3): h_sigmoid(
+                      (relu): ReLU6(inplace=True)
+                    )
+                  )
+                )
+                (4): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1), bias=False)
+                (5): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+              )
+            )
+            (2): InvertedResidual(
+              (conv): Sequential(
+                (0): Conv2d(16, 72, kernel_size=(1, 1), stride=(1, 1), bias=False)
+                (1): BatchNorm2d(72, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+                (2): ReLU(inplace=True)
+                (3): Conv2d(72, 72, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), groups=72, bias=False)
+                (4): BatchNorm2d(72, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+                (5): Identity()
+                (6): ReLU(inplace=True)
+                (7): Conv2d(72, 24, kernel_size=(1, 1), stride=(1, 1), bias=False)
+                (8): BatchNorm2d(24, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+              )
+            )
+            (3): InvertedResidual(
+              (conv): Sequential(
+                (0): Conv2d(24, 88, kernel_size=(1, 1), stride=(1, 1), bias=False)
+                (1): BatchNorm2d(88, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+                (2): ReLU(inplace=True)
+                (3): Conv2d(88, 88, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=88, bias=False)
+                (4): BatchNorm2d(88, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+                (5): Identity()
+                (6): ReLU(inplace=True)
+                (7): Conv2d(88, 24, kernel_size=(1, 1), stride=(1, 1), bias=False)
+                (8): BatchNorm2d(24, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+              )
+            )
+            (4): InvertedResidual(
+              (conv): Sequential(
+                (0): Conv2d(24, 96, kernel_size=(1, 1), stride=(1, 1), bias=False)
+                (1): BatchNorm2d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+                (2): h_swish(
+                  (sigmoid): h_sigmoid(
+                    (relu): ReLU6(inplace=True)
+                  )
+                )
+                (3): Conv2d(96, 96, kernel_size=(5, 5), stride=(2, 2), padding=(2, 2), groups=96, bias=False)
+                (4): BatchNorm2d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+                (5): SELayer(
+                  (avg_pool): AdaptiveAvgPool2d(output_size=1)
+                  (fc): Sequential(
+                    (0): Linear(in_features=96, out_features=24, bias=True)
+                    (1): ReLU(inplace=True)
+                    (2): Linear(in_features=24, out_features=96, bias=True)
+                    (3): h_sigmoid(
+                      (relu): ReLU6(inplace=True)
+                    )
+                  )
+                )
+                (6): h_swish(
+                  (sigmoid): h_sigmoid(
+                    (relu): ReLU6(inplace=True)
+                  )
+                )
+                (7): Conv2d(96, 40, kernel_size=(1, 1), stride=(1, 1), bias=False)
+                (8): BatchNorm2d(40, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+              )
+            )
+            (5): InvertedResidual(
+              (conv): Sequential(
+                (0): Conv2d(40, 240, kernel_size=(1, 1), stride=(1, 1), bias=False)
+                (1): BatchNorm2d(240, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+                (2): h_swish(
+                  (sigmoid): h_sigmoid(
+                    (relu): ReLU6(inplace=True)
+                  )
+                )
+                (3): Conv2d(240, 240, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2), groups=240, bias=False)
+                (4): BatchNorm2d(240, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+                (5): SELayer(
+                  (avg_pool): AdaptiveAvgPool2d(output_size=1)
+                  (fc): Sequential(
+                    (0): Linear(in_features=240, out_features=64, bias=True)
+                    (1): ReLU(inplace=True)
+                    (2): Linear(in_features=64, out_features=240, bias=True)
+                    (3): h_sigmoid(
+                      (relu): ReLU6(inplace=True)
+                    )
+                  )
+                )
+                (6): h_swish(
+                  (sigmoid): h_sigmoid(
+                    (relu): ReLU6(inplace=True)
+                  )
+                )
+                (7): Conv2d(240, 40, kernel_size=(1, 1), stride=(1, 1), bias=False)
+                (8): BatchNorm2d(40, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+              )
+            )
+            (6): InvertedResidual(
+              (conv): Sequential(
+                (0): Conv2d(40, 240, kernel_size=(1, 1), stride=(1, 1), bias=False)
+                (1): BatchNorm2d(240, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+                (2): h_swish(
+                  (sigmoid): h_sigmoid(
+                    (relu): ReLU6(inplace=True)
+                  )
+                )
+                (3): Conv2d(240, 240, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2), groups=240, bias=False)
+                (4): BatchNorm2d(240, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+                (5): SELayer(
+                  (avg_pool): AdaptiveAvgPool2d(output_size=1)
+                  (fc): Sequential(
+                    (0): Linear(in_features=240, out_features=64, bias=True)
+                    (1): ReLU(inplace=True)
+                    (2): Linear(in_features=64, out_features=240, bias=True)
+                    (3): h_sigmoid(
+                      (relu): ReLU6(inplace=True)
+                    )
+                  )
+                )
+                (6): h_swish(
+                  (sigmoid): h_sigmoid(
+                    (relu): ReLU6(inplace=True)
+                  )
+                )
+                (7): Conv2d(240, 40, kernel_size=(1, 1), stride=(1, 1), bias=False)
+                (8): BatchNorm2d(40, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+              )
+            )
+            (7): InvertedResidual(
+              (conv): Sequential(
+                (0): Conv2d(40, 120, kernel_size=(1, 1), stride=(1, 1), bias=False)
+                (1): BatchNorm2d(120, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+                (2): h_swish(
+                  (sigmoid): h_sigmoid(
+                    (relu): ReLU6(inplace=True)
+                  )
+                )
+                (3): Conv2d(120, 120, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2), groups=120, bias=False)
+                (4): BatchNorm2d(120, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+                (5): SELayer(
+                  (avg_pool): AdaptiveAvgPool2d(output_size=1)
+                  (fc): Sequential(
+                    (0): Linear(in_features=120, out_features=32, bias=True)
+                    (1): ReLU(inplace=True)
+                    (2): Linear(in_features=32, out_features=120, bias=True)
+                    (3): h_sigmoid(
+                      (relu): ReLU6(inplace=True)
+                    )
+                  )
+                )
+                (6): h_swish(
+                  (sigmoid): h_sigmoid(
+                    (relu): ReLU6(inplace=True)
+                  )
+                )
+                (7): Conv2d(120, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+                (8): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+              )
+            )
+            (8): InvertedResidual(
+              (conv): Sequential(
+                (0): Conv2d(48, 144, kernel_size=(1, 1), stride=(1, 1), bias=False)
+                (1): BatchNorm2d(144, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+                (2): h_swish(
+                  (sigmoid): h_sigmoid(
+                    (relu): ReLU6(inplace=True)
+                  )
+                )
+                (3): Conv2d(144, 144, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2), groups=144, bias=False)
+                (4): BatchNorm2d(144, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+                (5): SELayer(
+                  (avg_pool): AdaptiveAvgPool2d(output_size=1)
+                  (fc): Sequential(
+                    (0): Linear(in_features=144, out_features=40, bias=True)
+                    (1): ReLU(inplace=True)
+                    (2): Linear(in_features=40, out_features=144, bias=True)
+                    (3): h_sigmoid(
+                      (relu): ReLU6(inplace=True)
+                    )
+                  )
+                )
+                (6): h_swish(
+                  (sigmoid): h_sigmoid(
+                    (relu): ReLU6(inplace=True)
+                  )
+                )
+                (7): Conv2d(144, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+                (8): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+              )
+            )
+            (9): InvertedResidual(
+              (conv): Sequential(
+                (0): Conv2d(48, 288, kernel_size=(1, 1), stride=(1, 1), bias=False)
+                (1): BatchNorm2d(288, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+                (2): h_swish(
+                  (sigmoid): h_sigmoid(
+                    (relu): ReLU6(inplace=True)
+                  )
+                )
+                (3): Conv2d(288, 288, kernel_size=(5, 5), stride=(2, 2), padding=(2, 2), groups=288, bias=False)
+                (4): BatchNorm2d(288, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+                (5): SELayer(
+                  (avg_pool): AdaptiveAvgPool2d(output_size=1)
+                  (fc): Sequential(
+                    (0): Linear(in_features=288, out_features=72, bias=True)
+                    (1): ReLU(inplace=True)
+                    (2): Linear(in_features=72, out_features=288, bias=True)
+                    (3): h_sigmoid(
+                      (relu): ReLU6(inplace=True)
+                    )
+                  )
+                )
+                (6): h_swish(
+                  (sigmoid): h_sigmoid(
+                    (relu): ReLU6(inplace=True)
+                  )
+                )
+                (7): Conv2d(288, 96, kernel_size=(1, 1), stride=(1, 1), bias=False)
+                (8): BatchNorm2d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+              )
+            )
+            (10): InvertedResidual(
+              (conv): Sequential(
+                (0): Conv2d(96, 576, kernel_size=(1, 1), stride=(1, 1), bias=False)
+                (1): BatchNorm2d(576, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+                (2): h_swish(
+                  (sigmoid): h_sigmoid(
+                    (relu): ReLU6(inplace=True)
+                  )
+                )
+                (3): Conv2d(576, 576, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2), groups=576, bias=False)
+                (4): BatchNorm2d(576, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+                (5): SELayer(
+                  (avg_pool): AdaptiveAvgPool2d(output_size=1)
+                  (fc): Sequential(
+                    (0): Linear(in_features=576, out_features=144, bias=True)
+                    (1): ReLU(inplace=True)
+                    (2): Linear(in_features=144, out_features=576, bias=True)
+                    (3): h_sigmoid(
+                      (relu): ReLU6(inplace=True)
+                    )
+                  )
+                )
+                (6): h_swish(
+                  (sigmoid): h_sigmoid(
+                    (relu): ReLU6(inplace=True)
+                  )
+                )
+                (7): Conv2d(576, 96, kernel_size=(1, 1), stride=(1, 1), bias=False)
+                (8): BatchNorm2d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+              )
+            )
+            (11): InvertedResidual(
+              (conv): Sequential(
+                (0): Conv2d(96, 576, kernel_size=(1, 1), stride=(1, 1), bias=False)
+                (1): BatchNorm2d(576, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+                (2): h_swish(
+                  (sigmoid): h_sigmoid(
+                    (relu): ReLU6(inplace=True)
+                  )
+                )
+                (3): Conv2d(576, 576, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2), groups=576, bias=False)
+                (4): BatchNorm2d(576, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+                (5): SELayer(
+                  (avg_pool): AdaptiveAvgPool2d(output_size=1)
+                  (fc): Sequential(
+                    (0): Linear(in_features=576, out_features=144, bias=True)
+                    (1): ReLU(inplace=True)
+                    (2): Linear(in_features=144, out_features=576, bias=True)
+                    (3): h_sigmoid(
+                      (relu): ReLU6(inplace=True)
+                    )
+                  )
+                )
+                (6): h_swish(
+                  (sigmoid): h_sigmoid(
+                    (relu): ReLU6(inplace=True)
+                  )
+                )
+                (7): Conv2d(576, 96, kernel_size=(1, 1), stride=(1, 1), bias=False)
+                (8): BatchNorm2d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+              )
+            )
+          )
+          (conv): Sequential(
+            (0): Conv2d(96, 576, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (1): BatchNorm2d(576, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (2): h_swish(
+              (sigmoid): h_sigmoid(
+                (relu): ReLU6(inplace=True)
+              )
+            )
+          )
+          (avgpool): AdaptiveAvgPool2d(output_size=(1, 1))
+          (classifier): Sequential(
+            (0): Linear(in_features=576, out_features=1024, bias=True)
+            (1): h_swish(
+              (sigmoid): h_sigmoid(
+                (relu): ReLU6(inplace=True)
+              )
+            )
+            (2): Dropout(p=0.2, inplace=False)
+            (3): Linear(in_features=1024, out_features=10, bias=True)
+          )
+        )
+      )
+    )
+    (dist_modules): ModuleList(
+      (0-2): 3 x ResidualEncodedModule(
+        (logit): Sequential(
+          (0): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1))
+          (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (2): Sigmoid()
+        )
+        (residual_encoder): Sequential(
+          (0): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+          (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (2): ReLU6(inplace=True)
+        )
+      )
+      (3-4): 2 x ResidualEncodedModule(
+        (logit): Sequential(
+          (0): Conv2d(72, 72, kernel_size=(1, 1), stride=(1, 1))
+          (1): BatchNorm2d(72, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (2): Sigmoid()
+        )
+        (residual_encoder): Sequential(
+          (0): Conv2d(72, 72, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+          (1): BatchNorm2d(72, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (2): ReLU6(inplace=True)
+        )
+      )
+    )
+  )
+)
+
+ Optimizer: SGD (
+Parameter Group 0
+    dampening: 0
+    differentiable: False
+    foreach: None
+    lr: 0.01
+    maximize: False
+    momentum: 0.9
+    nesterov: False
+    weight_decay: 0.0
+)
+ Epoch: 1, lr: 1.0e-02, train_loss: 7.4229, train_acc: 0.1546 test_loss: 1.8650, test_acc: 0.2690, best: 0.2690, time: 0:00:32
+ Epoch: 2, lr: 1.0e-02, train_loss: 5.1813, train_acc: 0.2176 test_loss: 1.8773, test_acc: 0.2701, best: 0.2701, time: 0:00:31
+ Epoch: 3, lr: 1.0e-02, train_loss: 4.7054, train_acc: 0.2476 test_loss: 1.7518, test_acc: 0.3134, best: 0.3134, time: 0:00:31
+ Epoch: 4, lr: 1.0e-02, train_loss: 4.3822, train_acc: 0.2660 test_loss: 1.7013, test_acc: 0.3550, best: 0.3550, time: 0:00:31
+ Epoch: 5, lr: 1.0e-02, train_loss: 4.1700, train_acc: 0.3028 test_loss: 1.5927, test_acc: 0.4050, best: 0.4050, time: 0:00:31
+ Epoch: 6, lr: 1.0e-02, train_loss: 4.0184, train_acc: 0.3344 test_loss: 1.4819, test_acc: 0.4535, best: 0.4535, time: 0:00:31
+ Epoch: 7, lr: 1.0e-02, train_loss: 3.9639, train_acc: 0.3484 test_loss: 1.5321, test_acc: 0.4295, best: 0.4535, time: 0:00:30
+ Epoch: 8, lr: 1.0e-02, train_loss: 3.8553, train_acc: 0.3656 test_loss: 1.3706, test_acc: 0.5036, best: 0.5036, time: 0:00:30
+ Epoch: 9, lr: 1.0e-02, train_loss: 3.7823, train_acc: 0.3800 test_loss: 1.3673, test_acc: 0.5106, best: 0.5106, time: 0:00:30
+ Epoch: 10, lr: 1.0e-02, train_loss: 3.7358, train_acc: 0.3928 test_loss: 1.3864, test_acc: 0.4709, best: 0.5106, time: 0:00:29
+ Epoch: 11, lr: 1.0e-02, train_loss: 3.6885, train_acc: 0.3982 test_loss: 1.3463, test_acc: 0.5162, best: 0.5162, time: 0:00:29
+ Epoch: 12, lr: 1.0e-02, train_loss: 3.6433, train_acc: 0.4006 test_loss: 1.3642, test_acc: 0.4989, best: 0.5162, time: 0:00:30
+ Epoch: 13, lr: 1.0e-02, train_loss: 3.5755, train_acc: 0.4208 test_loss: 1.2742, test_acc: 0.5397, best: 0.5397, time: 0:00:30
+ Epoch: 14, lr: 1.0e-02, train_loss: 3.5744, train_acc: 0.4296 test_loss: 1.2678, test_acc: 0.5491, best: 0.5491, time: 0:00:29
+ Epoch: 15, lr: 1.0e-02, train_loss: 3.5162, train_acc: 0.4176 test_loss: 1.2029, test_acc: 0.5783, best: 0.5783, time: 0:00:30
+ Epoch: 16, lr: 1.0e-02, train_loss: 3.5194, train_acc: 0.4438 test_loss: 1.2163, test_acc: 0.5731, best: 0.5783, time: 0:00:31
+ Epoch: 17, lr: 1.0e-02, train_loss: 3.4908, train_acc: 0.4306 test_loss: 1.1920, test_acc: 0.5644, best: 0.5783, time: 0:00:38
+ Epoch: 18, lr: 1.0e-02, train_loss: 3.4620, train_acc: 0.4504 test_loss: 1.3747, test_acc: 0.5004, best: 0.5783, time: 0:00:39
+ Epoch: 19, lr: 1.0e-02, train_loss: 3.4126, train_acc: 0.4580 test_loss: 1.2590, test_acc: 0.5424, best: 0.5783, time: 0:00:38
+ Epoch: 20, lr: 1.0e-02, train_loss: 3.4159, train_acc: 0.4562 test_loss: 1.1208, test_acc: 0.6058, best: 0.6058, time: 0:00:37
+ Epoch: 21, lr: 1.0e-02, train_loss: 3.3806, train_acc: 0.4578 test_loss: 1.1121, test_acc: 0.6064, best: 0.6064, time: 0:00:39
+ Epoch: 22, lr: 1.0e-02, train_loss: 3.3728, train_acc: 0.4622 test_loss: 1.1901, test_acc: 0.5834, best: 0.6064, time: 0:00:36
+ Epoch: 23, lr: 1.0e-02, train_loss: 3.3400, train_acc: 0.4716 test_loss: 1.0967, test_acc: 0.6162, best: 0.6162, time: 0:00:30
+ Epoch: 24, lr: 1.0e-02, train_loss: 3.3655, train_acc: 0.4632 test_loss: 1.1817, test_acc: 0.5820, best: 0.6162, time: 0:00:31
+ Epoch: 25, lr: 1.0e-02, train_loss: 3.3053, train_acc: 0.4794 test_loss: 1.1301, test_acc: 0.6164, best: 0.6164, time: 0:00:30
+ Epoch: 26, lr: 1.0e-02, train_loss: 3.3130, train_acc: 0.4794 test_loss: 1.1429, test_acc: 0.6031, best: 0.6164, time: 0:00:30
+ Epoch: 27, lr: 1.0e-02, train_loss: 3.2953, train_acc: 0.4888 test_loss: 1.0954, test_acc: 0.6160, best: 0.6164, time: 0:00:31
+ Epoch: 28, lr: 1.0e-02, train_loss: 3.2689, train_acc: 0.4774 test_loss: 1.1219, test_acc: 0.6008, best: 0.6164, time: 0:00:30
+ Epoch: 29, lr: 1.0e-02, train_loss: 3.2097, train_acc: 0.5032 test_loss: 1.1716, test_acc: 0.5893, best: 0.6164, time: 0:00:30
+ Epoch: 30, lr: 1.0e-02, train_loss: 3.2360, train_acc: 0.5020 test_loss: 1.1119, test_acc: 0.6142, best: 0.6164, time: 0:00:30
+ Epoch: 31, lr: 1.0e-02, train_loss: 3.2549, train_acc: 0.4884 test_loss: 1.0808, test_acc: 0.6129, best: 0.6164, time: 0:00:31
+ Epoch: 32, lr: 1.0e-02, train_loss: 3.2552, train_acc: 0.4994 test_loss: 1.0734, test_acc: 0.6179, best: 0.6179, time: 0:00:31
+ Epoch: 33, lr: 1.0e-02, train_loss: 3.2189, train_acc: 0.5128 test_loss: 1.0373, test_acc: 0.6414, best: 0.6414, time: 0:00:30
+ Epoch: 34, lr: 1.0e-02, train_loss: 3.2018, train_acc: 0.4978 test_loss: 1.1141, test_acc: 0.6172, best: 0.6414, time: 0:00:35
+ Epoch: 35, lr: 1.0e-02, train_loss: 3.2186, train_acc: 0.5022 test_loss: 1.0715, test_acc: 0.6289, best: 0.6414, time: 0:00:41
+ Epoch: 36, lr: 1.0e-02, train_loss: 3.1882, train_acc: 0.5072 test_loss: 1.0315, test_acc: 0.6348, best: 0.6414, time: 0:00:50
+ Epoch: 37, lr: 1.0e-02, train_loss: 3.1990, train_acc: 0.4920 test_loss: 1.0892, test_acc: 0.6211, best: 0.6414, time: 0:00:51
+ Epoch: 38, lr: 1.0e-02, train_loss: 3.1687, train_acc: 0.5260 test_loss: 0.9958, test_acc: 0.6697, best: 0.6697, time: 0:00:51
+ Epoch: 39, lr: 1.0e-02, train_loss: 3.1740, train_acc: 0.5226 test_loss: 1.0398, test_acc: 0.6308, best: 0.6697, time: 0:00:49
+ Epoch: 40, lr: 1.0e-02, train_loss: 3.1391, train_acc: 0.5286 test_loss: 1.0216, test_acc: 0.6494, best: 0.6697, time: 0:00:48
+ Epoch: 41, lr: 1.0e-02, train_loss: 3.1645, train_acc: 0.5074 test_loss: 1.0131, test_acc: 0.6501, best: 0.6697, time: 0:00:47
+ Epoch: 42, lr: 1.0e-02, train_loss: 3.1245, train_acc: 0.5160 test_loss: 0.9715, test_acc: 0.6610, best: 0.6697, time: 0:00:49
+ Epoch: 43, lr: 1.0e-02, train_loss: 3.1130, train_acc: 0.5240 test_loss: 1.0257, test_acc: 0.6436, best: 0.6697, time: 0:00:50
+ Epoch: 44, lr: 1.0e-02, train_loss: 3.1319, train_acc: 0.5282 test_loss: 0.9799, test_acc: 0.6691, best: 0.6697, time: 0:00:50
+ Epoch: 45, lr: 1.0e-02, train_loss: 3.1187, train_acc: 0.5236 test_loss: 1.0288, test_acc: 0.6546, best: 0.6697, time: 0:00:50
+ Epoch: 46, lr: 1.0e-02, train_loss: 3.1244, train_acc: 0.5158 test_loss: 1.0175, test_acc: 0.6496, best: 0.6697, time: 0:00:50
+ Epoch: 47, lr: 1.0e-02, train_loss: 3.0915, train_acc: 0.5276 test_loss: 1.0251, test_acc: 0.6566, best: 0.6697, time: 0:00:48
+ Epoch: 48, lr: 1.0e-02, train_loss: 3.1196, train_acc: 0.5356 test_loss: 1.0606, test_acc: 0.6331, best: 0.6697, time: 0:00:48
+ Epoch: 49, lr: 1.0e-02, train_loss: 3.0995, train_acc: 0.5224 test_loss: 1.0299, test_acc: 0.6481, best: 0.6697, time: 0:00:50
+ Epoch: 50, lr: 1.0e-02, train_loss: 3.0963, train_acc: 0.5394 test_loss: 1.0897, test_acc: 0.6335, best: 0.6697, time: 0:00:50
+ Epoch: 51, lr: 1.0e-02, train_loss: 3.0673, train_acc: 0.5364 test_loss: 1.0169, test_acc: 0.6579, best: 0.6697, time: 0:00:50
+ Epoch: 52, lr: 1.0e-02, train_loss: 3.0846, train_acc: 0.5358 test_loss: 1.0972, test_acc: 0.6386, best: 0.6697, time: 0:00:50
+ Epoch: 53, lr: 1.0e-02, train_loss: 3.0788, train_acc: 0.5374 test_loss: 0.9767, test_acc: 0.6840, best: 0.6840, time: 0:00:50
+ Epoch: 54, lr: 1.0e-02, train_loss: 3.0701, train_acc: 0.5440 test_loss: 1.0254, test_acc: 0.6535, best: 0.6840, time: 0:00:49
+ Epoch: 55, lr: 1.0e-02, train_loss: 3.0455, train_acc: 0.5388 test_loss: 0.9879, test_acc: 0.6654, best: 0.6840, time: 0:00:47
+ Epoch: 56, lr: 1.0e-02, train_loss: 3.0450, train_acc: 0.5524 test_loss: 0.9568, test_acc: 0.6895, best: 0.6895, time: 0:00:48
+ Epoch: 57, lr: 1.0e-02, train_loss: 3.0413, train_acc: 0.5428 test_loss: 0.9916, test_acc: 0.6833, best: 0.6895, time: 0:00:50
+ Epoch: 58, lr: 1.0e-02, train_loss: 3.0547, train_acc: 0.5586 test_loss: 1.0040, test_acc: 0.6827, best: 0.6895, time: 0:00:50
+ Epoch: 59, lr: 1.0e-02, train_loss: 3.0630, train_acc: 0.5288 test_loss: 0.9815, test_acc: 0.6711, best: 0.6895, time: 0:00:51
+ Epoch: 60, lr: 1.0e-02, train_loss: 3.0553, train_acc: 0.5454 test_loss: 0.9445, test_acc: 0.6780, best: 0.6895, time: 0:00:51
+ Epoch: 61, lr: 1.0e-02, train_loss: 3.0400, train_acc: 0.5512 test_loss: 0.9904, test_acc: 0.6790, best: 0.6895, time: 0:00:49
+ Epoch: 62, lr: 1.0e-02, train_loss: 3.0460, train_acc: 0.5456 test_loss: 0.9806, test_acc: 0.6917, best: 0.6917, time: 0:00:48
+ Epoch: 63, lr: 1.0e-02, train_loss: 3.0239, train_acc: 0.5506 test_loss: 0.9930, test_acc: 0.6599, best: 0.6917, time: 0:00:47
+ Epoch: 64, lr: 1.0e-02, train_loss: 3.0241, train_acc: 0.5452 test_loss: 0.9538, test_acc: 0.6829, best: 0.6917, time: 0:00:50
+ Epoch: 65, lr: 1.0e-02, train_loss: 3.0051, train_acc: 0.5522 test_loss: 1.0045, test_acc: 0.6515, best: 0.6917, time: 0:00:50
+ Epoch: 66, lr: 1.0e-02, train_loss: 3.0137, train_acc: 0.5532 test_loss: 0.9544, test_acc: 0.6896, best: 0.6917, time: 0:00:51
+ Epoch: 67, lr: 1.0e-02, train_loss: 3.0184, train_acc: 0.5536 test_loss: 0.9171, test_acc: 0.6893, best: 0.6917, time: 0:00:50
+ Epoch: 68, lr: 1.0e-02, train_loss: 3.0048, train_acc: 0.5592 test_loss: 0.8945, test_acc: 0.7013, best: 0.7013, time: 0:00:50
+ Epoch: 69, lr: 1.0e-02, train_loss: 3.0344, train_acc: 0.5430 test_loss: 0.8800, test_acc: 0.7131, best: 0.7131, time: 0:00:49
+ Epoch: 70, lr: 1.0e-02, train_loss: 3.0012, train_acc: 0.5556 test_loss: 0.8897, test_acc: 0.6930, best: 0.7131, time: 0:00:47
+ Epoch: 71, lr: 1.0e-02, train_loss: 2.9637, train_acc: 0.5700 test_loss: 0.9217, test_acc: 0.6936, best: 0.7131, time: 0:00:48
+ Epoch: 72, lr: 1.0e-02, train_loss: 3.0048, train_acc: 0.5654 test_loss: 0.9696, test_acc: 0.6736, best: 0.7131, time: 0:00:51
+ Epoch: 73, lr: 1.0e-02, train_loss: 3.0110, train_acc: 0.5490 test_loss: 0.9226, test_acc: 0.6913, best: 0.7131, time: 0:00:51
+ Epoch: 74, lr: 1.0e-02, train_loss: 2.9966, train_acc: 0.5654 test_loss: 0.9672, test_acc: 0.6740, best: 0.7131, time: 0:00:50
+ Epoch: 75, lr: 1.0e-02, train_loss: 2.9978, train_acc: 0.5568 test_loss: 0.9497, test_acc: 0.6870, best: 0.7131, time: 0:00:50
+ Epoch: 76, lr: 1.0e-02, train_loss: 2.9882, train_acc: 0.5632 test_loss: 1.0786, test_acc: 0.6542, best: 0.7131, time: 0:00:49
+ Epoch: 77, lr: 1.0e-02, train_loss: 2.9653, train_acc: 0.5638 test_loss: 0.9306, test_acc: 0.6991, best: 0.7131, time: 0:00:49
+ Epoch: 78, lr: 1.0e-02, train_loss: 2.9681, train_acc: 0.5652 test_loss: 0.9729, test_acc: 0.6829, best: 0.7131, time: 0:00:48
+ Epoch: 79, lr: 1.0e-02, train_loss: 2.9600, train_acc: 0.5592 test_loss: 1.0415, test_acc: 0.6508, best: 0.7131, time: 0:00:51
+ Epoch: 80, lr: 1.0e-02, train_loss: 2.9265, train_acc: 0.5778 test_loss: 0.9455, test_acc: 0.6881, best: 0.7131, time: 0:00:51
+ Epoch: 81, lr: 1.0e-02, train_loss: 2.9584, train_acc: 0.5680 test_loss: 0.9354, test_acc: 0.6974, best: 0.7131, time: 0:00:50
+ Epoch: 82, lr: 1.0e-02, train_loss: 2.9373, train_acc: 0.5672 test_loss: 0.8920, test_acc: 0.7057, best: 0.7131, time: 0:00:51
+ Epoch: 83, lr: 1.0e-02, train_loss: 2.9353, train_acc: 0.5716 test_loss: 0.9518, test_acc: 0.6913, best: 0.7131, time: 0:00:49
+ Epoch: 84, lr: 1.0e-02, train_loss: 2.9665, train_acc: 0.5618 test_loss: 1.0082, test_acc: 0.6837, best: 0.7131, time: 0:00:49
+ Epoch: 85, lr: 1.0e-02, train_loss: 2.9394, train_acc: 0.5700 test_loss: 0.9753, test_acc: 0.6919, best: 0.7131, time: 0:00:48
+ Epoch: 86, lr: 1.0e-02, train_loss: 2.9447, train_acc: 0.5740 test_loss: 0.9253, test_acc: 0.6903, best: 0.7131, time: 0:00:48
+ Epoch: 87, lr: 1.0e-02, train_loss: 2.9215, train_acc: 0.5816 test_loss: 0.9634, test_acc: 0.6937, best: 0.7131, time: 0:00:50
+ Epoch: 88, lr: 1.0e-02, train_loss: 2.9323, train_acc: 0.5794 test_loss: 0.9142, test_acc: 0.6985, best: 0.7131, time: 0:00:50
+ Epoch: 89, lr: 1.0e-02, train_loss: 2.9348, train_acc: 0.5718 test_loss: 0.9608, test_acc: 0.6937, best: 0.7131, time: 0:00:50
+ Epoch: 90, lr: 1.0e-02, train_loss: 2.9599, train_acc: 0.5690 test_loss: 1.0073, test_acc: 0.6730, best: 0.7131, time: 0:00:50
+ Epoch: 91, lr: 1.0e-02, train_loss: 2.9201, train_acc: 0.5810 test_loss: 0.8834, test_acc: 0.7055, best: 0.7131, time: 0:00:49
+ Epoch: 92, lr: 1.0e-02, train_loss: 2.9338, train_acc: 0.5762 test_loss: 0.9104, test_acc: 0.7250, best: 0.7250, time: 0:00:48
+ Epoch: 93, lr: 1.0e-02, train_loss: 2.9101, train_acc: 0.5828 test_loss: 0.9646, test_acc: 0.6937, best: 0.7250, time: 0:00:47
+ Epoch: 94, lr: 1.0e-02, train_loss: 2.9018, train_acc: 0.5912 test_loss: 0.8966, test_acc: 0.7076, best: 0.7250, time: 0:00:48
+ Epoch: 95, lr: 1.0e-02, train_loss: 2.9188, train_acc: 0.5710 test_loss: 0.9986, test_acc: 0.6834, best: 0.7250, time: 0:00:49
+ Epoch: 96, lr: 1.0e-02, train_loss: 2.9275, train_acc: 0.5772 test_loss: 0.9748, test_acc: 0.6953, best: 0.7250, time: 0:00:50
+ Epoch: 97, lr: 1.0e-02, train_loss: 2.9125, train_acc: 0.5746 test_loss: 0.8486, test_acc: 0.7268, best: 0.7268, time: 0:00:50
+ Epoch: 98, lr: 1.0e-02, train_loss: 2.8691, train_acc: 0.5950 test_loss: 0.9327, test_acc: 0.7137, best: 0.7268, time: 0:00:49
+ Epoch: 99, lr: 1.0e-02, train_loss: 2.9254, train_acc: 0.5672 test_loss: 0.8829, test_acc: 0.7123, best: 0.7268, time: 0:00:48
+ Epoch: 100, lr: 1.0e-02, train_loss: 2.9185, train_acc: 0.5832 test_loss: 0.9394, test_acc: 0.7009, best: 0.7268, time: 0:00:48
+ Epoch: 101, lr: 1.0e-02, train_loss: 2.8764, train_acc: 0.5914 test_loss: 0.8957, test_acc: 0.7236, best: 0.7268, time: 0:00:47
+ Epoch: 102, lr: 1.0e-02, train_loss: 2.8780, train_acc: 0.5816 test_loss: 0.9829, test_acc: 0.6879, best: 0.7268, time: 0:00:50
+ Epoch: 103, lr: 1.0e-02, train_loss: 2.8925, train_acc: 0.5914 test_loss: 0.9613, test_acc: 0.6986, best: 0.7268, time: 0:00:51
+ Epoch: 104, lr: 1.0e-02, train_loss: 2.8649, train_acc: 0.5846 test_loss: 1.0282, test_acc: 0.6811, best: 0.7268, time: 0:00:51
+ Epoch: 105, lr: 1.0e-02, train_loss: 2.8900, train_acc: 0.5820 test_loss: 0.9712, test_acc: 0.6846, best: 0.7268, time: 0:00:51
+ Epoch: 106, lr: 1.0e-02, train_loss: 2.8936, train_acc: 0.5846 test_loss: 1.0649, test_acc: 0.6597, best: 0.7268, time: 0:00:49
+ Epoch: 107, lr: 1.0e-02, train_loss: 2.8643, train_acc: 0.5900 test_loss: 0.9426, test_acc: 0.7150, best: 0.7268, time: 0:00:48
+ Epoch: 108, lr: 1.0e-02, train_loss: 2.8940, train_acc: 0.5772 test_loss: 0.9120, test_acc: 0.7066, best: 0.7268, time: 0:00:48
+ Epoch: 109, lr: 1.0e-02, train_loss: 2.8842, train_acc: 0.5828 test_loss: 1.0546, test_acc: 0.6556, best: 0.7268, time: 0:00:47
+ Epoch: 110, lr: 1.0e-02, train_loss: 2.8706, train_acc: 0.5862 test_loss: 0.9144, test_acc: 0.7036, best: 0.7268, time: 0:00:50
+ Epoch: 111, lr: 1.0e-02, train_loss: 2.8804, train_acc: 0.5872 test_loss: 0.9704, test_acc: 0.6833, best: 0.7268, time: 0:00:52
+ Epoch: 112, lr: 1.0e-02, train_loss: 2.8495, train_acc: 0.5872 test_loss: 1.0175, test_acc: 0.6945, best: 0.7268, time: 0:00:51
+ Epoch: 113, lr: 1.0e-02, train_loss: 2.8662, train_acc: 0.5898 test_loss: 0.8785, test_acc: 0.7204, best: 0.7268, time: 0:00:50
+ Epoch: 114, lr: 1.0e-02, train_loss: 2.8408, train_acc: 0.6020 test_loss: 0.9745, test_acc: 0.6854, best: 0.7268, time: 0:00:49
+ Epoch: 115, lr: 1.0e-02, train_loss: 2.8514, train_acc: 0.6014 test_loss: 0.9054, test_acc: 0.7117, best: 0.7268, time: 0:00:48
+ Epoch: 116, lr: 1.0e-02, train_loss: 2.8427, train_acc: 0.5972 test_loss: 0.9999, test_acc: 0.6860, best: 0.7268, time: 0:00:47
+ Epoch: 117, lr: 1.0e-02, train_loss: 2.8489, train_acc: 0.5974 test_loss: 0.9045, test_acc: 0.7086, best: 0.7268, time: 0:00:51
+ Epoch: 118, lr: 1.0e-02, train_loss: 2.8641, train_acc: 0.5990 test_loss: 0.9080, test_acc: 0.7156, best: 0.7268, time: 0:00:51
+ Epoch: 119, lr: 1.0e-02, train_loss: 2.8881, train_acc: 0.5810 test_loss: 0.9308, test_acc: 0.7004, best: 0.7268, time: 0:00:50
+ Epoch: 120, lr: 1.0e-02, train_loss: 2.8740, train_acc: 0.5850 test_loss: 0.9718, test_acc: 0.6914, best: 0.7268, time: 0:00:50
+ Epoch: 121, lr: 1.0e-02, train_loss: 2.8541, train_acc: 0.5992 test_loss: 0.9863, test_acc: 0.6916, best: 0.7268, time: 0:00:48
+ Epoch: 122, lr: 1.0e-02, train_loss: 2.8566, train_acc: 0.6064 test_loss: 0.9956, test_acc: 0.6923, best: 0.7268, time: 0:00:49
+ Epoch: 123, lr: 1.0e-02, train_loss: 2.8672, train_acc: 0.5980 test_loss: 0.9572, test_acc: 0.7040, best: 0.7268, time: 0:00:47
+ Epoch: 124, lr: 1.0e-02, train_loss: 2.8408, train_acc: 0.6006 test_loss: 0.9704, test_acc: 0.7140, best: 0.7268, time: 0:00:50
+ Epoch: 125, lr: 1.0e-02, train_loss: 2.8487, train_acc: 0.5998 test_loss: 0.9025, test_acc: 0.7336, best: 0.7336, time: 0:00:50
+ Epoch: 126, lr: 1.0e-02, train_loss: 2.8498, train_acc: 0.5962 test_loss: 0.9358, test_acc: 0.7017, best: 0.7336, time: 0:00:50
+ Epoch: 127, lr: 1.0e-02, train_loss: 2.8565, train_acc: 0.6062 test_loss: 0.9433, test_acc: 0.7282, best: 0.7336, time: 0:00:50
+ Epoch: 128, lr: 1.0e-02, train_loss: 2.8502, train_acc: 0.5940 test_loss: 1.0167, test_acc: 0.6773, best: 0.7336, time: 0:00:49
+ Epoch: 129, lr: 1.0e-02, train_loss: 2.8093, train_acc: 0.6150 test_loss: 0.8758, test_acc: 0.7109, best: 0.7336, time: 0:00:49
+ Epoch: 130, lr: 1.0e-02, train_loss: 2.8208, train_acc: 0.6174 test_loss: 1.0321, test_acc: 0.6774, best: 0.7336, time: 0:00:48
+ Epoch: 131, lr: 1.0e-02, train_loss: 2.8185, train_acc: 0.6178 test_loss: 0.9859, test_acc: 0.7059, best: 0.7336, time: 0:00:48
+ Epoch: 132, lr: 1.0e-02, train_loss: 2.8375, train_acc: 0.6030 test_loss: 0.8953, test_acc: 0.7057, best: 0.7336, time: 0:00:50
+ Epoch: 133, lr: 1.0e-02, train_loss: 2.8102, train_acc: 0.6148 test_loss: 0.8870, test_acc: 0.7046, best: 0.7336, time: 0:00:50
+ Epoch: 134, lr: 1.0e-02, train_loss: 2.8306, train_acc: 0.6054 test_loss: 0.9001, test_acc: 0.7339, best: 0.7339, time: 0:00:52
+ Epoch: 135, lr: 1.0e-02, train_loss: 2.8264, train_acc: 0.6040 test_loss: 0.9851, test_acc: 0.6995, best: 0.7339, time: 0:00:48
+ Epoch: 136, lr: 1.0e-02, train_loss: 2.8429, train_acc: 0.6030 test_loss: 0.9242, test_acc: 0.7238, best: 0.7339, time: 0:00:48
+ Epoch: 137, lr: 1.0e-02, train_loss: 2.8453, train_acc: 0.6076 test_loss: 0.9174, test_acc: 0.7212, best: 0.7339, time: 0:00:48
+ Epoch: 138, lr: 1.0e-02, train_loss: 2.8223, train_acc: 0.6084 test_loss: 0.9741, test_acc: 0.6841, best: 0.7339, time: 0:00:48
+ Epoch: 139, lr: 1.0e-02, train_loss: 2.8310, train_acc: 0.6018 test_loss: 0.9091, test_acc: 0.7091, best: 0.7339, time: 0:00:47
+ Epoch: 140, lr: 1.0e-02, train_loss: 2.8179, train_acc: 0.6098 test_loss: 0.9641, test_acc: 0.7074, best: 0.7339, time: 0:00:50
+ Epoch: 141, lr: 1.0e-02, train_loss: 2.8206, train_acc: 0.6200 test_loss: 0.9287, test_acc: 0.7133, best: 0.7339, time: 0:00:51
+ Epoch: 142, lr: 1.0e-02, train_loss: 2.8063, train_acc: 0.6128 test_loss: 0.9803, test_acc: 0.6856, best: 0.7339, time: 0:00:51
+ Epoch: 143, lr: 1.0e-02, train_loss: 2.7883, train_acc: 0.6160 test_loss: 0.9509, test_acc: 0.6815, best: 0.7339, time: 0:00:52
+ Epoch: 144, lr: 1.0e-02, train_loss: 2.8352, train_acc: 0.6014 test_loss: 0.9495, test_acc: 0.7036, best: 0.7339, time: 0:00:50
+ Epoch: 145, lr: 1.0e-02, train_loss: 2.8188, train_acc: 0.6012 test_loss: 0.9241, test_acc: 0.7077, best: 0.7339, time: 0:00:49
+ Epoch: 146, lr: 1.0e-02, train_loss: 2.7881, train_acc: 0.6148 test_loss: 0.8865, test_acc: 0.7091, best: 0.7339, time: 0:00:48
+ Epoch: 147, lr: 1.0e-02, train_loss: 2.7974, train_acc: 0.6068 test_loss: 0.9008, test_acc: 0.7179, best: 0.7339, time: 0:00:49
+ Epoch: 148, lr: 1.0e-02, train_loss: 2.8026, train_acc: 0.6150 test_loss: 0.9382, test_acc: 0.7024, best: 0.7339, time: 0:00:50
+ Epoch: 149, lr: 1.0e-02, train_loss: 2.8143, train_acc: 0.6048 test_loss: 0.9619, test_acc: 0.7144, best: 0.7339, time: 0:00:52
+ Epoch: 150, lr: 1.0e-02, train_loss: 2.7957, train_acc: 0.6220 test_loss: 0.9358, test_acc: 0.7268, best: 0.7339, time: 0:00:50
+ Epoch: 151, lr: 1.0e-02, train_loss: 2.7992, train_acc: 0.6144 test_loss: 0.9775, test_acc: 0.6841, best: 0.7339, time: 0:00:49
+ Epoch: 152, lr: 1.0e-02, train_loss: 2.8127, train_acc: 0.6056 test_loss: 0.9057, test_acc: 0.7175, best: 0.7339, time: 0:00:49
+ Epoch: 153, lr: 1.0e-02, train_loss: 2.7838, train_acc: 0.6296 test_loss: 0.8157, test_acc: 0.7388, best: 0.7388, time: 0:00:48
+ Epoch: 154, lr: 1.0e-02, train_loss: 2.7887, train_acc: 0.6126 test_loss: 0.8566, test_acc: 0.7285, best: 0.7388, time: 0:00:48
+ Epoch: 155, lr: 1.0e-02, train_loss: 2.7833, train_acc: 0.6064 test_loss: 0.8361, test_acc: 0.7285, best: 0.7388, time: 0:00:51
+ Epoch: 156, lr: 1.0e-02, train_loss: 2.8066, train_acc: 0.6258 test_loss: 0.8655, test_acc: 0.7320, best: 0.7388, time: 0:00:51
+ Epoch: 157, lr: 1.0e-02, train_loss: 2.8047, train_acc: 0.6170 test_loss: 0.9437, test_acc: 0.7130, best: 0.7388, time: 0:00:51
+ Epoch: 158, lr: 1.0e-02, train_loss: 2.7816, train_acc: 0.6134 test_loss: 0.9110, test_acc: 0.7195, best: 0.7388, time: 0:00:49
+ Epoch: 159, lr: 1.0e-02, train_loss: 2.8056, train_acc: 0.6196 test_loss: 1.0253, test_acc: 0.6914, best: 0.7388, time: 0:00:49
+ Epoch: 160, lr: 1.0e-02, train_loss: 2.7766, train_acc: 0.6218 test_loss: 0.9212, test_acc: 0.7260, best: 0.7388, time: 0:00:49
+ Epoch: 161, lr: 1.0e-02, train_loss: 2.8005, train_acc: 0.6184 test_loss: 1.0142, test_acc: 0.6883, best: 0.7388, time: 0:00:48
+ Epoch: 162, lr: 1.0e-02, train_loss: 2.7935, train_acc: 0.6176 test_loss: 0.9204, test_acc: 0.7236, best: 0.7388, time: 0:00:48
+ Epoch: 163, lr: 1.0e-02, train_loss: 2.7630, train_acc: 0.6222 test_loss: 0.8987, test_acc: 0.7137, best: 0.7388, time: 0:00:51
+ Epoch: 164, lr: 1.0e-02, train_loss: 2.7864, train_acc: 0.6224 test_loss: 0.9687, test_acc: 0.7047, best: 0.7388, time: 0:00:51
+ Epoch: 165, lr: 1.0e-02, train_loss: 2.7739, train_acc: 0.6222 test_loss: 1.0832, test_acc: 0.6584, best: 0.7388, time: 0:01:02
+ Epoch: 166, lr: 1.0e-02, train_loss: 2.7850, train_acc: 0.6182 test_loss: 0.9208, test_acc: 0.7191, best: 0.7388, time: 0:01:04
+ Epoch: 167, lr: 1.0e-02, train_loss: 2.7638, train_acc: 0.6272 test_loss: 0.9071, test_acc: 0.7039, best: 0.7388, time: 0:01:02
+ Epoch: 168, lr: 1.0e-02, train_loss: 2.7864, train_acc: 0.6196 test_loss: 0.9154, test_acc: 0.7228, best: 0.7388, time: 0:01:02
+ Epoch: 169, lr: 1.0e-02, train_loss: 2.7937, train_acc: 0.6234 test_loss: 0.8854, test_acc: 0.7279, best: 0.7388, time: 0:00:48
+ Epoch: 170, lr: 1.0e-02, train_loss: 2.7721, train_acc: 0.6210 test_loss: 1.0066, test_acc: 0.6924, best: 0.7388, time: 0:01:00
+ Epoch: 171, lr: 1.0e-02, train_loss: 2.7623, train_acc: 0.6152 test_loss: 0.8850, test_acc: 0.7406, best: 0.7406, time: 0:00:51
+ Epoch: 172, lr: 1.0e-02, train_loss: 2.7768, train_acc: 0.6198 test_loss: 0.8434, test_acc: 0.7350, best: 0.7406, time: 0:00:51
+ Epoch: 173, lr: 1.0e-02, train_loss: 2.7680, train_acc: 0.6212 test_loss: 0.9703, test_acc: 0.6959, best: 0.7406, time: 0:00:50
+ Epoch: 174, lr: 1.0e-02, train_loss: 2.7533, train_acc: 0.6292 test_loss: 0.8987, test_acc: 0.7244, best: 0.7406, time: 0:00:49
+ Epoch: 175, lr: 1.0e-02, train_loss: 2.7973, train_acc: 0.6054 test_loss: 0.9788, test_acc: 0.7121, best: 0.7406, time: 0:00:50
+ Epoch: 176, lr: 1.0e-02, train_loss: 2.7661, train_acc: 0.6184 test_loss: 0.9464, test_acc: 0.7095, best: 0.7406, time: 0:00:57
+ Epoch: 177, lr: 1.0e-02, train_loss: 2.7594, train_acc: 0.6248 test_loss: 0.9386, test_acc: 0.7035, best: 0.7406, time: 0:00:49
+ Epoch: 178, lr: 1.0e-02, train_loss: 2.7762, train_acc: 0.6194 test_loss: 0.8720, test_acc: 0.7211, best: 0.7406, time: 0:01:05
+ Epoch: 179, lr: 1.0e-02, train_loss: 2.7386, train_acc: 0.6382 test_loss: 0.9500, test_acc: 0.7070, best: 0.7406, time: 0:00:51
+ Epoch: 180, lr: 2.0e-03, train_loss: 2.6884, train_acc: 0.6510 test_loss: 0.8982, test_acc: 0.7439, best: 0.7439, time: 0:00:52
+ Epoch: 181, lr: 2.0e-03, train_loss: 2.6669, train_acc: 0.6466 test_loss: 0.8297, test_acc: 0.7535, best: 0.7535, time: 0:00:49
+ Epoch: 182, lr: 2.0e-03, train_loss: 2.6388, train_acc: 0.6596 test_loss: 0.8509, test_acc: 0.7488, best: 0.7535, time: 0:00:58
+ Epoch: 183, lr: 2.0e-03, train_loss: 2.6526, train_acc: 0.6662 test_loss: 0.9052, test_acc: 0.7342, best: 0.7535, time: 0:00:48
+ Epoch: 184, lr: 2.0e-03, train_loss: 2.6558, train_acc: 0.6614 test_loss: 0.8135, test_acc: 0.7541, best: 0.7541, time: 0:00:49
+ Epoch: 185, lr: 2.0e-03, train_loss: 2.6603, train_acc: 0.6598 test_loss: 0.8691, test_acc: 0.7488, best: 0.7541, time: 0:00:48
+ Epoch: 186, lr: 2.0e-03, train_loss: 2.6474, train_acc: 0.6696 test_loss: 0.8331, test_acc: 0.7630, best: 0.7630, time: 0:00:57
+ Epoch: 187, lr: 2.0e-03, train_loss: 2.6441, train_acc: 0.6580 test_loss: 0.7808, test_acc: 0.7599, best: 0.7630, time: 0:00:50
+ Epoch: 188, lr: 2.0e-03, train_loss: 2.6496, train_acc: 0.6672 test_loss: 0.8195, test_acc: 0.7605, best: 0.7630, time: 0:00:41
+ Epoch: 189, lr: 2.0e-03, train_loss: 2.6783, train_acc: 0.6640 test_loss: 0.8500, test_acc: 0.7599, best: 0.7630, time: 0:00:45
+ Epoch: 190, lr: 2.0e-03, train_loss: 2.6650, train_acc: 0.6438 test_loss: 0.9256, test_acc: 0.7354, best: 0.7630, time: 0:00:39
+ Epoch: 191, lr: 2.0e-03, train_loss: 2.6285, train_acc: 0.6700 test_loss: 0.8741, test_acc: 0.7475, best: 0.7630, time: 0:00:39
+ Epoch: 192, lr: 2.0e-03, train_loss: 2.6582, train_acc: 0.6602 test_loss: 0.8527, test_acc: 0.7620, best: 0.7630, time: 0:00:38
+ Epoch: 193, lr: 2.0e-03, train_loss: 2.6445, train_acc: 0.6662 test_loss: 0.8566, test_acc: 0.7598, best: 0.7630, time: 0:00:38
+ Epoch: 194, lr: 2.0e-03, train_loss: 2.6630, train_acc: 0.6668 test_loss: 0.8659, test_acc: 0.7541, best: 0.7630, time: 0:00:39
+ Epoch: 195, lr: 2.0e-03, train_loss: 2.6355, train_acc: 0.6698 test_loss: 0.8605, test_acc: 0.7542, best: 0.7630, time: 0:00:33
+ Epoch: 196, lr: 2.0e-03, train_loss: 2.6172, train_acc: 0.6646 test_loss: 0.8513, test_acc: 0.7521, best: 0.7630, time: 0:00:30
+ Epoch: 197, lr: 2.0e-03, train_loss: 2.6412, train_acc: 0.6632 test_loss: 0.8157, test_acc: 0.7570, best: 0.7630, time: 0:00:29
+ Epoch: 198, lr: 2.0e-03, train_loss: 2.6316, train_acc: 0.6726 test_loss: 0.8322, test_acc: 0.7504, best: 0.7630, time: 0:00:29
+ Epoch: 199, lr: 2.0e-03, train_loss: 2.6697, train_acc: 0.6624 test_loss: 0.9236, test_acc: 0.7326, best: 0.7630, time: 0:00:30
+ Epoch: 200, lr: 2.0e-03, train_loss: 2.6510, train_acc: 0.6640 test_loss: 0.8255, test_acc: 0.7455, best: 0.7630, time: 0:00:30
+ Epoch: 201, lr: 2.0e-03, train_loss: 2.6499, train_acc: 0.6704 test_loss: 0.8328, test_acc: 0.7415, best: 0.7630, time: 0:00:30
+ Epoch: 202, lr: 2.0e-03, train_loss: 2.6827, train_acc: 0.6510 test_loss: 0.8244, test_acc: 0.7649, best: 0.7649, time: 0:00:32
+ Epoch: 203, lr: 2.0e-03, train_loss: 2.6614, train_acc: 0.6686 test_loss: 0.8793, test_acc: 0.7482, best: 0.7649, time: 0:00:32
+ Epoch: 204, lr: 2.0e-03, train_loss: 2.6246, train_acc: 0.6660 test_loss: 0.8636, test_acc: 0.7355, best: 0.7649, time: 0:00:30
+ Epoch: 205, lr: 2.0e-03, train_loss: 2.6525, train_acc: 0.6626 test_loss: 0.7884, test_acc: 0.7646, best: 0.7649, time: 0:00:29
+ Epoch: 206, lr: 2.0e-03, train_loss: 2.6327, train_acc: 0.6716 test_loss: 0.9001, test_acc: 0.7488, best: 0.7649, time: 0:00:31
+ Epoch: 207, lr: 2.0e-03, train_loss: 2.6396, train_acc: 0.6628 test_loss: 0.8962, test_acc: 0.7330, best: 0.7649, time: 0:00:32
+ Epoch: 208, lr: 2.0e-03, train_loss: 2.6620, train_acc: 0.6574 test_loss: 0.8756, test_acc: 0.7374, best: 0.7649, time: 0:00:29
+ Epoch: 209, lr: 2.0e-03, train_loss: 2.6488, train_acc: 0.6644 test_loss: 0.8780, test_acc: 0.7485, best: 0.7649, time: 0:00:29
+ Epoch: 210, lr: 2.0e-03, train_loss: 2.6300, train_acc: 0.6738 test_loss: 0.8638, test_acc: 0.7398, best: 0.7649, time: 0:00:30
+ Epoch: 211, lr: 2.0e-03, train_loss: 2.6709, train_acc: 0.6540 test_loss: 0.8919, test_acc: 0.7519, best: 0.7649, time: 0:00:30
+ Epoch: 212, lr: 2.0e-03, train_loss: 2.6352, train_acc: 0.6606 test_loss: 0.8983, test_acc: 0.7425, best: 0.7649, time: 0:00:29
+ Epoch: 213, lr: 2.0e-03, train_loss: 2.6438, train_acc: 0.6770 test_loss: 0.9002, test_acc: 0.7336, best: 0.7649, time: 0:00:29
+ Epoch: 214, lr: 2.0e-03, train_loss: 2.6492, train_acc: 0.6744 test_loss: 0.8888, test_acc: 0.7419, best: 0.7649, time: 0:00:29
+ Epoch: 215, lr: 2.0e-03, train_loss: 2.6171, train_acc: 0.6748 test_loss: 0.8163, test_acc: 0.7485, best: 0.7649, time: 0:00:29
+ Epoch: 216, lr: 2.0e-03, train_loss: 2.6215, train_acc: 0.6684 test_loss: 0.8928, test_acc: 0.7401, best: 0.7649, time: 0:00:30
+ Epoch: 217, lr: 2.0e-03, train_loss: 2.6443, train_acc: 0.6650 test_loss: 0.9058, test_acc: 0.7406, best: 0.7649, time: 0:00:30
+ Epoch: 218, lr: 2.0e-03, train_loss: 2.6202, train_acc: 0.6780 test_loss: 0.8292, test_acc: 0.7614, best: 0.7649, time: 0:00:30
+ Epoch: 219, lr: 2.0e-03, train_loss: 2.6555, train_acc: 0.6610 test_loss: 0.8168, test_acc: 0.7566, best: 0.7649, time: 0:00:29
+ Epoch: 220, lr: 2.0e-03, train_loss: 2.6255, train_acc: 0.6702 test_loss: 0.8499, test_acc: 0.7422, best: 0.7649, time: 0:00:31
+ Epoch: 221, lr: 2.0e-03, train_loss: 2.6054, train_acc: 0.6736 test_loss: 0.8804, test_acc: 0.7378, best: 0.7649, time: 0:00:31
+ Epoch: 222, lr: 2.0e-03, train_loss: 2.6375, train_acc: 0.6708 test_loss: 0.9089, test_acc: 0.7521, best: 0.7649, time: 0:00:30
+ Epoch: 223, lr: 2.0e-03, train_loss: 2.6328, train_acc: 0.6696 test_loss: 0.8180, test_acc: 0.7566, best: 0.7649, time: 0:00:30
+ Epoch: 224, lr: 2.0e-03, train_loss: 2.6464, train_acc: 0.6600 test_loss: 0.8981, test_acc: 0.7499, best: 0.7649, time: 0:00:30
+ Epoch: 225, lr: 2.0e-03, train_loss: 2.6404, train_acc: 0.6622 test_loss: 0.8960, test_acc: 0.7375, best: 0.7649, time: 0:00:30
+ Epoch: 226, lr: 2.0e-03, train_loss: 2.6206, train_acc: 0.6710 test_loss: 0.8086, test_acc: 0.7588, best: 0.7649, time: 0:00:29
+ Epoch: 227, lr: 2.0e-03, train_loss: 2.6315, train_acc: 0.6758 test_loss: 0.8703, test_acc: 0.7544, best: 0.7649, time: 0:00:30
+ Epoch: 228, lr: 2.0e-03, train_loss: 2.6186, train_acc: 0.6750 test_loss: 0.8630, test_acc: 0.7512, best: 0.7649, time: 0:00:30
+ Epoch: 229, lr: 2.0e-03, train_loss: 2.6193, train_acc: 0.6740 test_loss: 0.8162, test_acc: 0.7600, best: 0.7649, time: 0:00:30
+ Epoch: 230, lr: 2.0e-03, train_loss: 2.6317, train_acc: 0.6798 test_loss: 0.8151, test_acc: 0.7530, best: 0.7649, time: 0:00:30
+ Epoch: 231, lr: 2.0e-03, train_loss: 2.6338, train_acc: 0.6630 test_loss: 0.9036, test_acc: 0.7458, best: 0.7649, time: 0:00:29
+ Epoch: 232, lr: 2.0e-03, train_loss: 2.6278, train_acc: 0.6680 test_loss: 0.9514, test_acc: 0.7334, best: 0.7649, time: 0:00:29
+ Epoch: 233, lr: 2.0e-03, train_loss: 2.6016, train_acc: 0.6822 test_loss: 0.9034, test_acc: 0.7460, best: 0.7649, time: 0:00:30
+ Epoch: 234, lr: 2.0e-03, train_loss: 2.6109, train_acc: 0.6838 test_loss: 0.8303, test_acc: 0.7528, best: 0.7649, time: 0:00:29
+ Epoch: 235, lr: 2.0e-03, train_loss: 2.6317, train_acc: 0.6744 test_loss: 0.7757, test_acc: 0.7671, best: 0.7671, time: 0:00:29
+ Epoch: 236, lr: 2.0e-03, train_loss: 2.5871, train_acc: 0.6912 test_loss: 0.8124, test_acc: 0.7592, best: 0.7671, time: 0:00:29
+ Epoch: 237, lr: 2.0e-03, train_loss: 2.5941, train_acc: 0.6728 test_loss: 0.8765, test_acc: 0.7414, best: 0.7671, time: 0:00:29
+ Epoch: 238, lr: 2.0e-03, train_loss: 2.6372, train_acc: 0.6676 test_loss: 0.8234, test_acc: 0.7605, best: 0.7671, time: 0:00:29
+ Epoch: 239, lr: 2.0e-03, train_loss: 2.6271, train_acc: 0.6794 test_loss: 0.8775, test_acc: 0.7494, best: 0.7671, time: 0:00:30
+ Epoch: 240, lr: 4.0e-04, train_loss: 2.6081, train_acc: 0.6810 test_loss: 0.7617, test_acc: 0.7670, best: 0.7671, time: 0:00:30
+ Epoch: 241, lr: 4.0e-04, train_loss: 2.5705, train_acc: 0.6900 test_loss: 0.7840, test_acc: 0.7601, best: 0.7671, time: 0:00:30
+ Epoch: 242, lr: 4.0e-04, train_loss: 2.5988, train_acc: 0.6772 test_loss: 0.8504, test_acc: 0.7545, best: 0.7671, time: 0:00:29
+ Epoch: 243, lr: 4.0e-04, train_loss: 2.6280, train_acc: 0.6704 test_loss: 0.8052, test_acc: 0.7604, best: 0.7671, time: 0:00:29
+ Epoch: 244, lr: 4.0e-04, train_loss: 2.6143, train_acc: 0.6970 test_loss: 0.8212, test_acc: 0.7640, best: 0.7671, time: 0:00:30
+ Epoch: 245, lr: 4.0e-04, train_loss: 2.5983, train_acc: 0.6854 test_loss: 0.7741, test_acc: 0.7652, best: 0.7671, time: 0:00:30
+ Epoch: 246, lr: 4.0e-04, train_loss: 2.5908, train_acc: 0.6762 test_loss: 0.8136, test_acc: 0.7544, best: 0.7671, time: 0:00:30
+ Epoch: 247, lr: 4.0e-04, train_loss: 2.6102, train_acc: 0.6842 test_loss: 0.7462, test_acc: 0.7731, best: 0.7731, time: 0:00:29
+ Epoch: 248, lr: 4.0e-04, train_loss: 2.6143, train_acc: 0.6800 test_loss: 0.8226, test_acc: 0.7522, best: 0.7731, time: 0:00:30
+ Epoch: 249, lr: 4.0e-04, train_loss: 2.5947, train_acc: 0.6934 test_loss: 0.7936, test_acc: 0.7651, best: 0.7731, time: 0:00:30
+ Epoch: 250, lr: 4.0e-04, train_loss: 2.6180, train_acc: 0.6818 test_loss: 0.8455, test_acc: 0.7509, best: 0.7731, time: 0:00:31
+ Epoch: 251, lr: 4.0e-04, train_loss: 2.6072, train_acc: 0.6834 test_loss: 0.8411, test_acc: 0.7549, best: 0.7731, time: 0:00:30
+ Epoch: 252, lr: 4.0e-04, train_loss: 2.6186, train_acc: 0.6780 test_loss: 0.9734, test_acc: 0.7391, best: 0.7731, time: 0:00:31
+ Epoch: 253, lr: 4.0e-04, train_loss: 2.6144, train_acc: 0.6794 test_loss: 0.8264, test_acc: 0.7559, best: 0.7731, time: 0:00:31
+ Epoch: 254, lr: 4.0e-04, train_loss: 2.6062, train_acc: 0.6828 test_loss: 0.7800, test_acc: 0.7659, best: 0.7731, time: 0:00:31
+ Epoch: 255, lr: 4.0e-04, train_loss: 2.5871, train_acc: 0.6820 test_loss: 0.8377, test_acc: 0.7588, best: 0.7731, time: 0:00:31
+ Epoch: 256, lr: 4.0e-04, train_loss: 2.5950, train_acc: 0.6852 test_loss: 0.8451, test_acc: 0.7600, best: 0.7731, time: 0:00:31
+ Epoch: 257, lr: 4.0e-04, train_loss: 2.6116, train_acc: 0.6906 test_loss: 0.7684, test_acc: 0.7652, best: 0.7731, time: 0:00:30
+ Epoch: 258, lr: 4.0e-04, train_loss: 2.6037, train_acc: 0.6854 test_loss: 0.8508, test_acc: 0.7586, best: 0.7731, time: 0:00:28
+ Epoch: 259, lr: 4.0e-04, train_loss: 2.5997, train_acc: 0.6712 test_loss: 0.8977, test_acc: 0.7566, best: 0.7731, time: 0:00:28
+ Epoch: 260, lr: 4.0e-04, train_loss: 2.6097, train_acc: 0.6850 test_loss: 0.8211, test_acc: 0.7512, best: 0.7731, time: 0:00:28
+ Epoch: 261, lr: 4.0e-04, train_loss: 2.5878, train_acc: 0.6892 test_loss: 0.8176, test_acc: 0.7545, best: 0.7731, time: 0:00:28
+ Epoch: 262, lr: 4.0e-04, train_loss: 2.6144, train_acc: 0.6692 test_loss: 0.8999, test_acc: 0.7375, best: 0.7731, time: 0:00:27
+ Epoch: 263, lr: 4.0e-04, train_loss: 2.6036, train_acc: 0.6816 test_loss: 0.8683, test_acc: 0.7536, best: 0.7731, time: 0:00:26
+ Epoch: 264, lr: 4.0e-04, train_loss: 2.6102, train_acc: 0.6856 test_loss: 0.8447, test_acc: 0.7555, best: 0.7731, time: 0:00:28
+ Epoch: 265, lr: 4.0e-04, train_loss: 2.6001, train_acc: 0.6728 test_loss: 0.8972, test_acc: 0.7495, best: 0.7731, time: 0:00:27
+ Epoch: 266, lr: 4.0e-04, train_loss: 2.6159, train_acc: 0.6804 test_loss: 0.8635, test_acc: 0.7590, best: 0.7731, time: 0:00:26
+ Epoch: 267, lr: 4.0e-04, train_loss: 2.5970, train_acc: 0.6844 test_loss: 0.8470, test_acc: 0.7591, best: 0.7731, time: 0:00:28
+ Epoch: 268, lr: 4.0e-04, train_loss: 2.5797, train_acc: 0.6868 test_loss: 0.8328, test_acc: 0.7656, best: 0.7731, time: 0:00:28
+ Epoch: 269, lr: 4.0e-04, train_loss: 2.6073, train_acc: 0.6974 test_loss: 0.7975, test_acc: 0.7685, best: 0.7731, time: 0:00:28
+ Epoch: 270, lr: 8.0e-05, train_loss: 2.6040, train_acc: 0.6960 test_loss: 0.8151, test_acc: 0.7628, best: 0.7731, time: 0:00:28
+ Epoch: 271, lr: 8.0e-05, train_loss: 2.5761, train_acc: 0.6876 test_loss: 0.8103, test_acc: 0.7621, best: 0.7731, time: 0:00:28
+ Epoch: 272, lr: 8.0e-05, train_loss: 2.6420, train_acc: 0.6704 test_loss: 0.8194, test_acc: 0.7606, best: 0.7731, time: 0:00:28
+ Epoch: 273, lr: 8.0e-05, train_loss: 2.5741, train_acc: 0.6912 test_loss: 0.8505, test_acc: 0.7636, best: 0.7731, time: 0:00:27
+ Epoch: 274, lr: 8.0e-05, train_loss: 2.5999, train_acc: 0.6798 test_loss: 0.9644, test_acc: 0.7454, best: 0.7731, time: 0:00:27
+ Epoch: 275, lr: 8.0e-05, train_loss: 2.5883, train_acc: 0.6858 test_loss: 0.9272, test_acc: 0.7466, best: 0.7731, time: 0:00:28
+ Epoch: 276, lr: 8.0e-05, train_loss: 2.5556, train_acc: 0.6936 test_loss: 0.7762, test_acc: 0.7612, best: 0.7731, time: 0:00:26
+ Epoch: 277, lr: 8.0e-05, train_loss: 2.6097, train_acc: 0.6730 test_loss: 0.8490, test_acc: 0.7589, best: 0.7731, time: 0:00:27
+ Epoch: 278, lr: 8.0e-05, train_loss: 2.6017, train_acc: 0.6832 test_loss: 0.9296, test_acc: 0.7460, best: 0.7731, time: 0:00:27
+ Epoch: 279, lr: 8.0e-05, train_loss: 2.5965, train_acc: 0.6850 test_loss: 0.8062, test_acc: 0.7644, best: 0.7731, time: 0:00:27
+ Epoch: 280, lr: 8.0e-05, train_loss: 2.5784, train_acc: 0.6932 test_loss: 0.7903, test_acc: 0.7640, best: 0.7731, time: 0:00:27
+ Epoch: 281, lr: 8.0e-05, train_loss: 2.5852, train_acc: 0.6960 test_loss: 0.8316, test_acc: 0.7646, best: 0.7731, time: 0:00:27
+ Epoch: 282, lr: 8.0e-05, train_loss: 2.5901, train_acc: 0.6854 test_loss: 0.8384, test_acc: 0.7620, best: 0.7731, time: 0:00:27
+ Epoch: 283, lr: 8.0e-05, train_loss: 2.5774, train_acc: 0.6886 test_loss: 0.8144, test_acc: 0.7591, best: 0.7731, time: 0:00:28
+ Epoch: 284, lr: 8.0e-05, train_loss: 2.5750, train_acc: 0.6946 test_loss: 0.7689, test_acc: 0.7670, best: 0.7731, time: 0:00:27
+ Epoch: 285, lr: 8.0e-05, train_loss: 2.5913, train_acc: 0.6920 test_loss: 0.8524, test_acc: 0.7571, best: 0.7731, time: 0:00:27
+ Epoch: 286, lr: 8.0e-05, train_loss: 2.5684, train_acc: 0.6914 test_loss: 0.8275, test_acc: 0.7615, best: 0.7731, time: 0:00:27
+ Epoch: 287, lr: 8.0e-05, train_loss: 2.6073, train_acc: 0.6816 test_loss: 0.8080, test_acc: 0.7688, best: 0.7731, time: 0:00:27
+ Epoch: 288, lr: 8.0e-05, train_loss: 2.5942, train_acc: 0.6784 test_loss: 0.8378, test_acc: 0.7619, best: 0.7731, time: 0:00:28
+ Epoch: 289, lr: 8.0e-05, train_loss: 2.6106, train_acc: 0.6712 test_loss: 0.8561, test_acc: 0.7541, best: 0.7731, time: 0:00:27
+ Epoch: 290, lr: 8.0e-05, train_loss: 2.5870, train_acc: 0.6752 test_loss: 0.9760, test_acc: 0.7364, best: 0.7731, time: 0:00:28
+ Epoch: 291, lr: 8.0e-05, train_loss: 2.5947, train_acc: 0.6810 test_loss: 0.8529, test_acc: 0.7584, best: 0.7731, time: 0:00:27
+ Epoch: 292, lr: 8.0e-05, train_loss: 2.6050, train_acc: 0.6800 test_loss: 0.8169, test_acc: 0.7618, best: 0.7731, time: 0:00:27
+ Epoch: 293, lr: 8.0e-05, train_loss: 2.5945, train_acc: 0.6888 test_loss: 0.8190, test_acc: 0.7572, best: 0.7731, time: 0:00:27
+ Epoch: 294, lr: 8.0e-05, train_loss: 2.5889, train_acc: 0.6806 test_loss: 0.8686, test_acc: 0.7551, best: 0.7731, time: 0:00:27
+ Epoch: 295, lr: 8.0e-05, train_loss: 2.5858, train_acc: 0.7020 test_loss: 0.8070, test_acc: 0.7632, best: 0.7731, time: 0:00:28
+ Epoch: 296, lr: 8.0e-05, train_loss: 2.6016, train_acc: 0.6724 test_loss: 0.8637, test_acc: 0.7559, best: 0.7731, time: 0:00:27
+ Epoch: 297, lr: 8.0e-05, train_loss: 2.5839, train_acc: 0.6854 test_loss: 0.8769, test_acc: 0.7550, best: 0.7731, time: 0:00:27
+ Epoch: 298, lr: 8.0e-05, train_loss: 2.5620, train_acc: 0.6984 test_loss: 0.8721, test_acc: 0.7562, best: 0.7731, time: 0:00:27
+ Epoch: 299, lr: 8.0e-05, train_loss: 2.5931, train_acc: 0.6864 test_loss: 0.8698, test_acc: 0.7588, best: 0.7731, time: 0:00:27
+ Epoch: 300, lr: 8.0e-05, train_loss: 2.5892, train_acc: 0.6818 test_loss: 0.9344, test_acc: 0.7511, best: 0.7731, time: 0:00:27
+ Highest accuracy: 0.7731

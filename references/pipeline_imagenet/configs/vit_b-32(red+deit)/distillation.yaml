@@ -1,0 +1,8 @@
+MODEL:
+  NAME: "S=deit_b-32_r224, T=[convnext_tiny], D=[red, deit]"
+  TEACHERS: [convnext_tiny]
+  STUDENT: deit_b-32
+REED:
+  DIST_CONFIG: "../configs/vit_b_32(red+deit)/reed_config.yaml"
+TRAIN:
+  VALIDATE_TEACHERS_PRETRAIN: false

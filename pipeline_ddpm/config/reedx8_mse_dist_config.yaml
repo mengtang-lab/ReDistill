@@ -1,0 +1,10 @@
+head:
+  t_layers: [null, tid_0=model.down_blocks.2.downsamplers.0]
+  modules: [ null, RED ]
+  kwargs: [ null, { cs: 128, distance: mse, alpha: 1. } ]
+
+tail:
+  t_layers: [ tid_0=model.up_blocks.2.upsamplers.0,  tid_0=model.conv_out ]
+  modules: [ RED, MSE ]
+  kwargs: [ { cs: 128, distance: mse, alpha: 1. }, { } ]
+

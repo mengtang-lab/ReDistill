@@ -1,0 +1,10 @@
+head:
+  t_layers: [null, tid_0=downblocks.2]
+  modules: [ null, RED ]
+  kwargs: [ null, { cs: 128, distance: mse, alpha: 1. } ]
+
+tail:
+  t_layers: [ tid_0=upblocks.11, null ]
+  modules: [ RED, null ]
+  kwargs: [ { cs: 128, distance: mse, alpha: 1. }, null ]
+

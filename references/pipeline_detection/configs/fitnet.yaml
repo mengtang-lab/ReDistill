@@ -1,0 +1,10 @@
+DISTILLER:
+  TYPE: "FITNET"
+  TEACHER: "ResNet50"
+  STUDENT: "ResNet50_aggressive_pool"
+FITNET:
+  HINT_LAYER: 3
+  INPUT_SIZE: (224, 224)
+  LOSS:
+    CE_WEIGHT: 1.0
+    FEAT_WEIGHT: 100.0

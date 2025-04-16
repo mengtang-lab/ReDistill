@@ -1,0 +1,4 @@
+net.dist_head:
+  t_layers: [ null, tid_0=net.classifier ]
+  modules: [ null, DEIT ]
+  kwargs: [ null, {  } ]
