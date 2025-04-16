@@ -1,10 +1,11 @@
 # ReDistill: Residual Encoded Distillation for Peak Memory Reduction of CNN
+
 [Fang Chen](https://c-fun.github.io/), [Gourav Datta](https://godatta.github.io/), [Mujahid Al Rafi](https://mujahidalrafi.github.io/), [Hyeran Jeon](https://www.mocalab.org/), [Meng Tang](http://www.mengtang.org/)
 
+[Arxiv](https://arxiv.org/abs/2406.03744)
+ 
 ---
 
-[Arxiv]((https://arxiv.org/abs/2406.03744))
- 
  The expansion of neural network sizes and the enhanced resolution of modern image sensors result in heightened memory and power demands to process modern computer vision models. 
  In order to deploy these models in extremely resource-constrained edge devices, it is crucial to reduce their peak memory, which is the maximum memory consumed during the execution of a model.
  A naive approach to reducing peak memory is aggressive down-sampling of feature maps via pooling with large stride, which often results in unacceptable degradation in network performance.
@@ -19,7 +20,7 @@
 ![Figure7](./imgs/Figure7.jpg)
 
 
-### Environment
+## Environment
 
 `pip install -r requrements.txt`
 
@@ -28,9 +29,9 @@ Generally, this code repo is compatible with any pytorch version.
 **If you want to try quantization, please install intel [neural_compressor](https://github.com/intel/neural-compressor) and [intel_extension_for_pytorch](https://github.com/intel/intel-extension-for-pytorch)**
 
 
-### Image Classification Experiments
+## Image Classification Experiments
 
-##### STL10 Dataset
+### STL10 Dataset
 - please edit .sh file to enable multi-gpu training
 - change the value of ROOT variable to your own local root directory
 
@@ -53,7 +54,7 @@ Generally, this code repo is compatible with any pytorch version.
                ./configs/resnext18-red.yaml
 ```
 
-##### ImageNet Dataset
+### ImageNet Dataset
 - please edit .sh file to enable multi-gpu training
 - change the last argument (config file) to switch distillation method
 ```shell
@@ -66,21 +67,21 @@ Generally, this code repo is compatible with any pytorch version.
 > bash run_distill.sh reed /mnt/data/imagenet2012/ configs/imagenet/mobilenetv2/reed.yaml
 ```
 
-### DDPM-based Image Generation Experiments
+## DDPM-based Image Generation Experiments
 
-##### CIFAR10 Dataset
+### CIFAR10 Dataset
 ```shell
 > cd ./pipeline_ddpm
 > bash run_cifar10_distill.sh ./logs/cifar10_distill/ ./config/reedx2_aug_dist_config_alpha50.yaml
 ```
 
-##### CELEBA Dataset
+### CELEBA Dataset
 ```shell
 > cd ./pipeline_diffusion/
 > bash run_ddpm.sh /mnt/data2/celeba/ reed ./config/TMLR/CELEBA-REDx2.txt
 ```
 
-### Efficiency Analysis
+## Efficiency Analysis
 - please modify the 'ROOT' variable of the shell script 'analysis/run_sota_analysis.sh' to your root directory
 
 ```shell
@@ -105,12 +106,12 @@ Generally, this code repo is compatible with any pytorch version.
 > bash run_sota_analysis.sh ddpm ddpm ddpmx2 reedx2_dist_config_alpha0.1.yaml 200
 ```
 
-### Acknowledgements
+## Acknowledgements
 
 This code repo highly relies on [RepDistiller](https://github.com/HobbitLong/RepDistiller), [MLLD](https://github.com/Jin-Ying/Multi-Level-Logit-Distillation) and [pytorch-ddpm](https://github.com/w86763777/pytorch-ddpm).
 We sincerely thank these authors for their nice work.
 
-### Citation
+## Citation
 If you find this work useful for your research, please cite our paper:
 ```text
 @misc{chen2024redistillresidualencodeddistillation,
