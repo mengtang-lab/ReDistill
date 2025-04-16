@@ -1,3 +1,0 @@
-MODEL:
-  NAME: "Single=resnext18-32-11111"
-  STUDENT: resnext18-32-11111

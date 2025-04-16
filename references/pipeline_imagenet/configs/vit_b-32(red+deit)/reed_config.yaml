@@ -1,8 +1,0 @@
-net.to_patch_embedding:
-  t_layers: [ null, tid_0=features.6 ]
-  modules: [ null, RED ]
-  kwargs: [ null, { cs: 768 } ]
-net.dist_head:
-  t_layers: [ null, tid_0=classifier ]
-  modules: [ null, DEIT ]
-  kwargs: [ null, { } ]

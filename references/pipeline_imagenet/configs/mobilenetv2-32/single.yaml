@@ -1,3 +1,0 @@
-MODEL:
-  NAME: "Single=mobilenetv2-32-1111111"
-  STUDENT: mobilenetv2-32-1111111
