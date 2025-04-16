@@ -2,15 +2,5 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/references/pipeline_classification/other_distillation_methods/DiffKD" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/references/pipeline_classification/other_distillation_methods/DiffKD/image_classification_sota" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/references/pipeline_classification/other_distillation_methods/MultiLevelLogitDistillation" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/references/pipeline_classification/other_distillation_methods/RepDistiller" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/references/pipeline_classification/other_distillation_methods/cls_KD" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/references/pipeline_detection/FGD" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/references/pipeline_diffusion/U-ViT" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/references/pipeline_diffusion/denoising-diffusion-pytorch" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/references/pipeline_segmentation/mmcv" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/references/pipeline_segmentation/mmsegmentation" vcs="Git" />
   </component>
 </project>

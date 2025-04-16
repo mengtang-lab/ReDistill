@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fecc76fc-2c63-4e7d-af6e-e8beeac7b538" name="Changes" comment="" />
+    <list default="true" id="fecc76fc-2c63-4e7d-af6e-e8beeac7b538" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/ReDistill.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ReDistill.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/base/run_classification.sh" beforeDir="false" afterPath="$PROJECT_DIR$/base/run_classification.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pipeline_classification/stl10/run_stl10_distill.sh" beforeDir="false" afterPath="$PROJECT_DIR$/pipeline_classification/stl10/run_stl10_distill.sh" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,9 +19,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 1
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
   <component name="ProjectId" id="2vpUUU04H60FjUB0QkOZ4DJhE99" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -24,6 +30,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "main",
     "last_opened_file_path": "/Volumes/SSK/留学相关/研究/Archived/ReDistill",
     "node.js.detected.package.eslint": "true",
@@ -76,6 +83,7 @@
       <option name="presentableId" value="Default" />
       <updated>1744841524445</updated>
       <workItem from="1744841525569" duration="2261000" />
+      <workItem from="1744843796073" duration="2819000" />
     </task>
     <servers />
   </component>
