@@ -24,7 +24,7 @@
 
 `pip install -r requrements.txt`
 
-Generally, this code repo is compatible with any pytorch version. 
+Generally, this code repo is compatible with pytorch version >= 1.5. 
 
 **If you want to try quantization, please install intel [neural_compressor](https://github.com/intel/neural-compressor) and [intel_extension_for_pytorch](https://github.com/intel/intel-extension-for-pytorch)**
 
