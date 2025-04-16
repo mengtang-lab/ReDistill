@@ -26,7 +26,7 @@
 
 Generally, this code repo is compatible with pytorch version >= 1.5. 
 
-**If you want to try quantization, please install intel [neural_compressor](https://github.com/intel/neural-compressor) and [intel_extension_for_pytorch](https://github.com/intel/intel-extension-for-pytorch)**
+**If you want to try quantization, please install and compile intel [neural_compressor](https://github.com/intel/neural-compressor) and [intel_extension_for_pytorch](https://github.com/intel/intel-extension-for-pytorch)**
 
 
 ## Image Classification Experiments
