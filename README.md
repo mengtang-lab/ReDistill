@@ -112,7 +112,9 @@ This code repo highly relies on [RepDistiller](https://github.com/HobbitLong/Rep
 We sincerely thank these authors for their nice work.
 
 ## Citation
+This work is accepted by TMLR 2025.
 If you find this work useful for your research, please cite our paper:
+
 ```text
 @misc{chen2024redistillresidualencodeddistillation,
       title={ReDistill: Residual Encoded Distillation for Peak Memory Reduction}, 
